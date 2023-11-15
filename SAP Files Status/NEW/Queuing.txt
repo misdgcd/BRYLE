@@ -1,0 +1,59 @@
+2.100
+
+sa
+p@ssw0rd
+
+----------------------------------------------------------------
+
+Select t.ID, t.TicketNum,cs.number as CounterNumber, t.TicketDate, tt.TransType, st.StatType,
+ot.TimeStarted as order_started, ot.TimeEnded as order_ended, c.Remarks, cc.CancelCode, pt.TimeStarted as paymentstart, pt.CustomerName,
+r.ReleaseTime, r.WiontaEntry
+from tbl_Ticket t
+left join tbl_TransactionType tt on tt.ID = t.TransType
+left join tbl_StatusType st on st.id = t.Status
+left join tbl_OrderingTime ot on ot.TicketID = t.ID
+left join tbl_Counters cs on cs.ID = ot.CounterNumber
+left join tbl_PaymentTime pt on pt.TicketID = t.ID
+left join tbl_Releasing r on r.TicketInternalID = t.ID
+left join tbl_Cancelation c on c.TicketID = t.ID
+left join tbl_CancelCode cc on cc.id = c.Reason
+where convert(date, t.TicketDate,101) = '2021-10-27'
+order by t.TicketDate desc;
+
+-------------------------------------------------------------------
+
+Select t.ID, t.TicketNum,cs.number as CounterNumber, t.TicketDate, tt.TransType, st.StatType,
+ot.TimeStarted as order_started, ot.TimeEnded as order_ended, c.Remarks, cc.CancelCode, pt.TimeStarted as paymentstart, pt.CustomerName
+from tbl_Ticket t
+left join tbl_TransactionType tt on tt.ID = t.TransType
+left join tbl_StatusType st on st.id = t.Status
+left join tbl_OrderingTime ot on ot.TicketID = t.ID
+left join tbl_Counters cs on cs.ID = ot.CounterNumber
+left join tbl_PaymentTime pt on pt.TicketID = t.ID
+left join tbl_Cancelation c on c.TicketID = t.ID
+left join tbl_CancelCode cc on cc.id = c.Reason
+where convert(date, t.TicketDate,101) = '2021-10-27'
+order by t.TicketDate desc;
+
+------------------------------------------------------------------
+
+UPDATE BOOKING CUSTOMER NAME
+
+/****** Script for SelectTopNRows command from SSMS  ******/
+SELECT TOP (1000) [id]
+      ,[BookingID]
+      ,[BookingClerk]
+      ,[BookingTime]
+      ,[BookingCustomer]
+      ,[ModeOfPayment]
+      ,[Status]
+      ,[Remarks]
+      ,[Cashier]
+      ,[PaymentTime]
+  FROM [DGCD_QSYSTEM].[dbo].[tbl_Booking]
+  where bookingID = '7487';
+
+
+Update [DGCD_QSYSTEM].[dbo].[tbl_Booking] set [BookingCustomer] = 'GS GAVEL LOGISTICS'
+where ID = 9252;
+

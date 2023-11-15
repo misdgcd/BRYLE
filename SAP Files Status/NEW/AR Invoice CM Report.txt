@@ -1,0 +1,13 @@
+Select OINV.DocNum,OINV.DocDate,OINV.CardName,
+INV1.BaseDocNum,INV1.ItemCode, INV1.Dscription,INV1.Quantity,INV1.UomCode,INV1.U_GPBD
+from OINV
+left join INV1 on INV1.BaseDocNum = OINV.DocNum
+where OINV.DocNum = '1'
+
+union all
+
+Select ORIN.DocNum,ORIN.DocDate, ORIN.CardName,
+RIN1.BaseDocNum,RIN1.ItemCode, RIN1.Dscription,RIN1.Quantity,RIN1.UomCode,RIN1.U_GPBD
+From ORIN
+left join RIN1 on RIN1.BaseDocNum = ORIN.DocNum
+where ORIN.DocNum = '1';

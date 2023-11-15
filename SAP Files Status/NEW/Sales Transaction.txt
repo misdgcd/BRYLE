@@ -1,0 +1,13 @@
+Select OINV.DocEntry, OINV.DocDate, OINV.CardCode, OINV.CardName, INV1.WhsCode,
+INV1.OpenCreQty, INV1.LineTotal, CAST(INV1.VatPrcnt AS DECIMAL(10,2)) / 100 as Vat, 
+INV1.LineTotal * CAST(INV1.VatPrcnt AS DECIMAL(10,2)) / 100 as AmountAfVat,
+INV1.TotalSumSy, INV1.OpenSumSys,
+INV1.VatGroup,
+INV1.OpenCreQty * INV1.PriceAfVAT as Gross_total,
+OCRD.U_taxPayerClass
+from INV1
+left join OINV on OINV.DocEntry = INV1.DocEntry
+left join OCRD on OCRD.CardCode = OINV.CardCode
+where OINV.DocEntry = '155'
+and INV1.itemcode = '0000724SHMTS'
+and OCRD.CardCode = 'C000113';

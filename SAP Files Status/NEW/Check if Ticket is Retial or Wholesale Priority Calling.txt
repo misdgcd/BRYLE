@@ -1,0 +1,27 @@
+Select * from tbl_Ticket 
+left join tbl_TransactionType on tbl_Ticket.TransType = tbl_TransactionType.ID
+left join tbl_OrderingTime on tbl_OrderingTime.TicketID  = tbl_Ticket.ID
+where cast(TicketDate as date) = '2021-12-01'
+
+TransType: 1 = Retail
+	   2 = Wholesale
+
+/****** Script for SelectTopNRows command from SSMS  ******/
+SELECT TOP (1000) [id]
+      ,[counter]
+      ,[TicketID]
+      ,[TransType]
+      ,[emp]
+      ,[called]
+  FROM [DGCD_QSYSTEM].[dbo].[tbl_Queue]
+  where TicketID = '8537';
+
+  /****** Script for SelectTopNRows command from SSMS  ******/
+SELECT TOP (1000) [id]
+      ,[counter]
+      ,[TicketID]
+      ,[TransType]
+      ,[emp]
+      ,[called]
+  FROM [DGCD_QSYSTEM].[dbo].[tbl_Queue]
+  where TicketID = '8538';
